@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const PORT = "3000";
+const PORT = 3001;
 const testRoutes = express.Router();
 
 // Reference to database

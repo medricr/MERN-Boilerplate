@@ -10,9 +10,7 @@ class App extends React.Component {
 			  <div className="container">
 			    <h2>Mern Boilerplate</h2>
 			  </div>
-			  <Route path='/' exact component={TodoList} />
-			  <Route path='/edit/:id' component={EditTodo} />
-			  <Route path='create' component={CreateTodo} />
+			 
 			</Router>
 		)
 	}
