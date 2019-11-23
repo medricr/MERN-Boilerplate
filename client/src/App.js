@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
 // Imported Components
 import UserLogin from './components/UserLogin/UserLogin';
+import NavBar from './components/NavBar/NavBar';
 
 
 class App extends React.Component {
@@ -27,10 +28,9 @@ class App extends React.Component {
 
 	render() {
 		return (
+			
 			<Router>
-			  <div className="container">
-			    <h2>Mern Boilerplate</h2>
-			  </div>
+			  <NavBar />
 				<Route path='/' exact component={UserLogin} />
 			</Router>
 		)
