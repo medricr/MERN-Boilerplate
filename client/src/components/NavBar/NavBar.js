@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 
 class NavBar extends React.Component {
 
+	constructor(props){
+		super(props);
+	}
+
 	state = {
 		isOpen: false
 	};
@@ -17,7 +21,13 @@ class NavBar extends React.Component {
 		return (
 			<div>
 				<Navbar color="light" light expand="md" className="navbar-static-top">
-					<NavbarBrand className="nav-link" href="/#">MERN Boilerplate</NavbarBrand>
+					{!this.props.userStatus ? 
+						<NavbarBrand className="nav-link" href="/#">MERN Boilerplate</NavbarBrand>	
+
+						:
+
+						<NavbarBrand className="nav-link" href='/#'>MERN Boilerplate || Welcome: {this.props.currentUser.username} </NavbarBrand>
+					}
 					<NavbarToggler onClick={this.toggle} />
 					<Collapse isOpen={this.state.isOpen} navbar>
 						<Nav className="ml-auto" navbar>

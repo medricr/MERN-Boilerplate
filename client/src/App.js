@@ -32,15 +32,18 @@ class App extends React.Component {
 			username: this.state.username,
 			password: this.state.password
 		}).then((result)=> {
-			this.setState({isLoggedIn: true, currentUser: result.data.user});
+			console.log(result.data)
+			this.setState({isLoggedIn: true, currentUser: result.data});
 		})
 	}
+
+
 
 	render() {
 		return (
 			
 			<Router>
-			  <NavBar />
+			  <NavBar currentUser={this.state.currentUser} userStatus={this.state.isLoggedIn ? true : false} />
 				<Route exact path='/' render={(props)=> <UserLogin handleInputChange={this.handleInputChange} insertUser={this.insertUser} />} />
 			</Router>
 		)
