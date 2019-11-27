@@ -1,10 +1,12 @@
 const path = require("path");
 const router = require("express").Router();
 let Schema = require('../client/models/UserSchema.js');
-
+const routes = require('./api');
 // Routes are exported and integerated into server.js
 // TODO
 // Seperate routes into controller and API files for use in react app
+
+router.use('/api', routes);
 
 // CREATE
 router.route('/test').post(function (req, res) {

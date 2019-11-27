@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 // const testRoutes = express.Router();
 const routes = require('./routes');
 
@@ -13,11 +13,12 @@ let Schema = require('./client/models/UserSchema.js');
 
 app.use(cors());
 app.use(bodyParser.json());
+
 app.use(routes);
 
 // Establish connection to database
 // Anything following localhost/ can be changed to fit whatever naming convention fits the project best 
-mongoose.connect('mongodb://localhost/todos', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/TEST', { useNewUrlParser: true });
 const connection = mongoose.connection;
 
 // Check connection to db

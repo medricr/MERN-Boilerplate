@@ -18,9 +18,9 @@ class UserLogin extends React.Component {
 					</FormGroup>
 					<FormGroup>
 						<Label>Password</Label>
-						<Input type="text" name="password" onChange={this.props.handleInputChange} />
+						<Input type="password" name="password" onChange={this.props.handleInputChange} />
 					</FormGroup>
-					
+					<Button onClick = {this.props.insertUser}>SUBMIT</Button>
 				</Form>
 			</Container>
 		)

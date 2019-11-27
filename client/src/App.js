@@ -1,6 +1,7 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import API from './utils/API';
 
 // Imported Components
 import UserLogin from './components/UserLogin/UserLogin';
@@ -26,12 +27,21 @@ class App extends React.Component {
 		});
 	}
 
+	insertUser = () => {
+		API.createUser({
+			username: this.state.username,
+			password: this.state.password
+		}).then((result)=> {
+			this.setState({isLoggedIn: true, currentUser: result.data.user});
+		})
+	}
+
 	render() {
 		return (
 			
 			<Router>
 			  <NavBar />
-				<Route path='/' exact component={UserLogin} />
+				<Route exact path='/' render={(props)=> <UserLogin handleInputChange={this.handleInputChange} insertUser={this.insertUser} />} />
 			</Router>
 		)
 	}
