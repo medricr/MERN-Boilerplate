@@ -12,7 +12,7 @@ const Schema = new schema({
 });
 
 Schema.methods = {
-	checkPassword: inputPassword => {
+	checkPassword: function(inputPassword) {
 		return bcrypt.compareSync(inputPassword, this.password)
 	},
 	hashPassword: plainTextPassword => {

@@ -16,11 +16,13 @@ const routes = require('./routes');
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(routes);
+
 
 app.use(session({secret: 'fortheemperor'}));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(routes);
 
 // Establish connection to database
 // Anything following localhost/ can be changed to fit whatever naming convention fits the project best 

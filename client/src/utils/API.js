@@ -20,7 +20,7 @@ export default {
 
 	loginUser: function(info){
 		console.log("login info: " + info);
-		return axios.post('/api/user/login', info)
+		return axios.post('/login', info)
 	}
 
 	

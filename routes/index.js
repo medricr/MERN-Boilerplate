@@ -2,6 +2,7 @@ const path = require("path");
 const router = require("express").Router();
 let Schema = require('../client/models/UserSchema.js');
 const routes = require('./api');
+const passport = require('passport');
 
 // Import any routes defined in the routes folder, and places them behind the '/api/ prefix. 
 // All final route orginization takes place here, as different sets of routes are imported and placed behind relavent prefixes.
@@ -43,5 +44,20 @@ router.route('/delete').post(function (req, res) {
 		.then(data => res.json(data))
 		.catch(err => res.status(422).json(err));
 })
+
+router.post('/login',
+	function (req, res, next) {
+		next()
+	},
+	passport.authenticate('local'),
+	(req, res) => {
+		const user = JSON.parse(JSON.stringify(req.user)) // hack
+		const cleanUser = Object.assign({}, user)
+		if (cleanUser) {
+			delete cleanUser.password
+		}
+		res.json({ user: cleanUser })
+	}
+)
 
 module.exports = router;

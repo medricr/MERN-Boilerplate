@@ -35,7 +35,9 @@ module.exports =  {
 		})
 	},
 	loginUser: function(req,res){
-		console.log(req.body);
-		res.json("leaving login")
+		// console.log(req.body);
+
+		res.json(req);
+		
 	}
 }

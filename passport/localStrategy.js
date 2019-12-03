@@ -7,6 +7,8 @@ const strategy = new LocalStrategy(
 	},
 	function(username, password, done) {
 		console.log("searching database for name.....")
+		console.log(username);
+		console.log(password);
 		db.User.findOne({'username': username}, (err, matchedUser) => {
 			if(err){
 				return done(err);
