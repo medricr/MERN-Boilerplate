@@ -45,19 +45,20 @@ router.route('/delete').post(function (req, res) {
 		.catch(err => res.status(422).json(err));
 })
 
-router.post('/login',
-	function (req, res, next) {
-		next()
-	},
-	passport.authenticate('local'),
-	(req, res) => {
-		const user = JSON.parse(JSON.stringify(req.user)) // hack
-		const cleanUser = Object.assign({}, user)
-		if (cleanUser) {
-			delete cleanUser.password
-		}
-		res.json({ user: cleanUser })
-	}
-)
+// MANUAL LOGIN ROUTE
+// router.post('/login',
+// 	function (req, res, next) {
+// 		next()
+// 	},
+// 	passport.authenticate('local'),
+// 	(req, res) => {
+// 		const user = JSON.parse(JSON.stringify(req.user)) // hack
+// 		const cleanUser = Object.assign({}, user)
+// 		if (cleanUser) {
+// 			delete cleanUser.password
+// 		}
+// 		res.json({ user: cleanUser })
+// 	}
+// )
 
 module.exports = router;
