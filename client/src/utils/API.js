@@ -6,5 +6,10 @@ export default {
 		console.log(info);
 
 		return axios.post("/api/user/insert", info);
+	},
+
+	getAllUsers: function(info) {
+
+		return axios.get('/api/user/getall', info);
 	}
 }

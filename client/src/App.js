@@ -4,8 +4,9 @@ import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import API from './utils/API';
 
 // Imported Components
-import UserLogin from './components/UserLogin/UserLogin';
-import NavBar from './components/NavBar/NavBar';
+import UserLogin from './components/UserLogin';
+import NavBar from './components/NavBar';
+import UserProfile from './components/UserProfile';
 
 
 class App extends React.Component {
@@ -13,9 +14,11 @@ class App extends React.Component {
 	state = {
 		username: "",
 		password: "",
+		bio: "",
 		isLoggedIn: false,
 		isSignedUp: false,
-		currentUser: {}
+		currentUser: {},
+		allUsers: []
 	}
 
 	handleInputChange = (event) => {
@@ -37,6 +40,13 @@ class App extends React.Component {
 		})
 	}
 
+	getAllUsers = () => {
+		API.getAllUsers()
+			.then((result => {
+				console.log(result.data);
+				this.setState({allUsers: result.data})
+			}))
+	}
 
 
 	render() {
@@ -44,7 +54,8 @@ class App extends React.Component {
 			
 			<Router>
 			  <NavBar currentUser={this.state.currentUser} userStatus={this.state.isLoggedIn ? true : false} />
-				<Route exact path='/' render={(props)=> <UserLogin handleInputChange={this.handleInputChange} insertUser={this.insertUser} />} />
+				<Route exact path='/' render={(props)=> <UserLogin handleInputChange={this.handleInputChange} insertUser={this.insertUser} getAll={this.getAllUsers} />} />
+				<Route exact path='/profile' render={(props)=> <UserProfile handleInputChange={this.handleInputChange} />} />
 			</Router>
 		)
 	}

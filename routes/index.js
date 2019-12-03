@@ -8,6 +8,7 @@ const routes = require('./api');
 // Once this is done, the formatted router can be exported. 
 router.use('/api', routes);
 
+// Basic CRUD routes
 // CREATE
 router.route('/test').post(function (req, res) {
 	let test = new Schema;

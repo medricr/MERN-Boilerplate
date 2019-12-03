@@ -6,8 +6,19 @@ module.exports = {
 	
 	createUser: function(req,res) {
 		console.log(req.body);
+		console.log("usercontroller creatuser hit");
 		db.User.create(req.body)
 			.then(dbModel => res.json(dbModel))
 			.catch(err => res.status(422).json(err));
+	},
+
+	getAllUsers: function(req, res) {
+		db.User.find({})
+			.then(dbModel => res.json(dbModel))
+			.catch(err => res.status(422).json(err));
+	},
+
+	updateUser: function(req,res) {
+		
 	}
 }

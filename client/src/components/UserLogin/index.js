@@ -21,6 +21,7 @@ class UserLogin extends React.Component {
 						<Input type="password" name="password" onChange={this.props.handleInputChange} />
 					</FormGroup>
 					<Button onClick = {this.props.insertUser}>SUBMIT</Button>
+					<Button onClick = {this.props.getAll}>SHOW ALL USERS</Button>
 				</Form>
 			</Container>
 		)
