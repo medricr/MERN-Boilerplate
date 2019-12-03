@@ -21,7 +21,7 @@ class App extends React.Component {
 		currentUser: {},
 		allUsers: []
 	}
-
+	// Captures info from form and places it in state
 	handleInputChange = (event) => {
 		let name = event.target.name;
 		const value = event.target.value;
@@ -31,15 +31,40 @@ class App extends React.Component {
 		});
 	}
 
+	// used to test the insertion of records from the react form into the database
 	insertUser = () => {
 		API.createUser({
 			username: this.state.username,
 			password: this.state.password
 		}).then((result)=> {
 			console.log(result.data)
-			this.setState({isLoggedIn: true, currentUser: result.data});
+		
 		})
 	}
+
+	// used to run the user object through passport, hashing the password before storing it in the database
+	registerUser = () => {
+		API.registerUser({
+			username: this.state.username,
+			password: this.state.password
+		}).then((result)=> {
+			console.log(result)
+			this.setState({ isSignedUp: true, currentUser: result.data });
+		})
+	}
+
+	loginUser = () => {
+		API.loginUser({
+			username: this.state.username,
+			password: this.state.password
+		}).then((result)=> {
+			console.log(result)
+			console.log("leaving login");
+			this.setState({isLoggedIn: true})
+		})
+	}
+
+
 
 	getAllUsers = () => {
 		API.getAllUsers()
@@ -57,7 +82,15 @@ class App extends React.Component {
 			  <NavBar currentUser={this.state.currentUser} userStatus={this.state.isLoggedIn ? true : false} />
 				<Switch>
 					<Route exact path='/' component={Splashpage} />
-					<Route exact path='/login' render={(props) => <UserLogin handleInputChange={this.handleInputChange} insertUser={this.insertUser} getAll={this.getAllUsers} />} />
+					<Route exact path='/login' render={(props) => 
+						<UserLogin 
+							handleInputChange={this.handleInputChange} 
+							insertUser={this.insertUser} 
+							getAll={this.getAllUsers} 
+							registerUser={this.registerUser} 
+							loginUser={this.loginUser}
+						/>} 
+					/>
 					<Route exact path='/profile' render={(props) => <UserProfile handleInputChange={this.handleInputChange}  />} />
 				</Switch>
 			</Router>

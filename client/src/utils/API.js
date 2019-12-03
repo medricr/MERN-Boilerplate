@@ -11,5 +11,17 @@ export default {
 	getAllUsers: function(info) {
 
 		return axios.get('/api/user/getall', info);
+	},
+
+	registerUser: function(info){
+		console.log("registration info: " + info); 
+		return axios.post('/api/user/register', info)
+	},
+
+	loginUser: function(info){
+		console.log("login info: " + info);
+		return axios.post('/api/user/login', info)
 	}
+
+	
 }

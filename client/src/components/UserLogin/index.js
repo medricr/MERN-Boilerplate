@@ -22,6 +22,8 @@ class UserLogin extends React.Component {
 					</FormGroup>
 					<Button onClick = {this.props.insertUser}>SUBMIT</Button>
 					<Button onClick = {this.props.getAll}>SHOW ALL USERS</Button>
+					<Button onClick = {this.props.registerUser}>REGISTER</Button>
+					<Button onClick = {this.props.loginUser}>LOGIN</Button>
 				</Form>
 			</Container>
 		)
