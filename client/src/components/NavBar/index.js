@@ -38,7 +38,7 @@ class NavBar extends React.Component {
 								<DropdownMenu right>
 									<DropdownItem>
 										<NavLink>
-											<Link className="nav-link" to='/gallery'>Link One</Link>
+											<Link className="nav-link" to='/login'>Link One</Link>
 										</NavLink>
 									</DropdownItem>
 									<DropdownItem>

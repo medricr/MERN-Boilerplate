@@ -7,9 +7,6 @@ const PORT = process.env.PORT || 3001;
 // const testRoutes = express.Router();
 const routes = require('./routes');
 
-// Reference to database
-let Schema = require('./client/models/UserSchema.js');
-
 
 app.use(cors());
 app.use(bodyParser.json());

@@ -1,6 +1,6 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Card, CardBody, CardText, CardHeader, CardFooter} from 'reactstrap';
+import {Card, CardBody, CardText, CardHeader, CardFooter, } from 'reactstrap';
 
 class UserProfile extends React.Component {
 
@@ -11,7 +11,11 @@ class UserProfile extends React.Component {
 	render() {
 		return(
 			<div>
-				jello worlkd
+				<Card>
+					<CardBody>
+						<CardText>Welcome, </CardText>
+					</CardBody>
+				</Card>
 			</div>
 		)
 	}
