@@ -5,6 +5,7 @@ import API from './utils/API';
 
 // Imported Components
 import UserLogin from './components/UserLogin';
+import UserSignup from './components/UserSignup';
 import NavBar from './components/NavBar';
 import UserProfile from './components/UserProfile';
 import Splashpage from './components/Splashpage';
@@ -53,6 +54,7 @@ class App extends React.Component {
 		})
 	}
 
+	// Handles logging in of user, sets the currentUser state object to the logged in user
 	loginUser = () => {
 		API.loginUser({
 			username: this.state.username,
@@ -64,14 +66,13 @@ class App extends React.Component {
 		})
 	}
 
+	// Handles the loggin out of the user, clears state
 	logoutUser = () => {
 		API.logoutUser().then((result) => {
 			console.log("user logged out")
 			this.setState({isLoggedIn: false, currentUser: {}, username: "", password: ""});
 		})
 	}
-
-
 
 	getAllUsers = () => {
 		API.getAllUsers()
@@ -92,11 +93,18 @@ class App extends React.Component {
 					<Route exact path='/login' render={(props) => 
 						<UserLogin 
 							handleInputChange={this.handleInputChange} 
+							userStatus={this.state.isLoggedIn}
 							// insertUser={this.insertUser} 
 							// getAll={this.getAllUsers} 
 							// registerUser={this.registerUser} 
 							loginUser={this.loginUser}
 							logoutUser={this.logoutUser}
+						/>} 
+					/>
+					<Route exact path='/register' render={(props) =>
+						<UserSignup 
+							handleInputChange={this.handleInputChange}
+							registerUser={this.registerUser}
 						/>} 
 					/>
 					<Route exact path='/profile' render={(props) => <UserProfile handleInputChange={this.handleInputChange}  />} />

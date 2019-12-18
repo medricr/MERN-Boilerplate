@@ -57,7 +57,7 @@ class NavBar extends React.Component {
 									</DropdownItem>
 									<DropdownItem>
 										<NavLink>
-											<Link className="nav-link" to='/mission'>Signup</Link>
+											<Link className="nav-link" to='/register'>Signup</Link>
 										</NavLink>
 									</DropdownItem>
 									<DropdownItem>

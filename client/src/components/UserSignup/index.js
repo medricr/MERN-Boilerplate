@@ -20,9 +20,11 @@ class UserSignup extends React.Component {
 						<Label>Password</Label>
 						<Input type="password" name="password" onChange={this.props.handleInputChange} />
 					</FormGroup>
-					<Button onClick={this.props.UserSignup}>Register Account</Button>
+					<Button onClick={this.props.registerUser}>Register Account</Button>
 				</Form>
 			</Container>
 		)
 	}
 }
+
+export default UserSignup;
