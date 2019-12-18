@@ -44,7 +44,6 @@ module.exports =  {
 				console.log(user)
 				if (err) { return next(err); }
 				return res.json(user);
-				// return res.redirect('/users/' + user.username);
 			});
 		})(req, res, next);
 	},

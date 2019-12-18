@@ -13,7 +13,7 @@ class UserProfile extends React.Component {
 			<div>
 				<Card>
 					<CardBody>
-						<CardText>Welcome, </CardText>
+						<CardText>Welcome, {this.props.currentUser} </CardText>
 					</CardBody>
 				</Card>
 			</div>

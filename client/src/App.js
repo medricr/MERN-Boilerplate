@@ -67,7 +67,7 @@ class App extends React.Component {
 	logoutUser = () => {
 		API.logoutUser().then((result) => {
 			console.log("user logged out")
-			this.setState({isLoggedIn: false, currentUser: {}});
+			this.setState({isLoggedIn: false, currentUser: {}, username: "", password: ""});
 		})
 	}
 
@@ -92,9 +92,9 @@ class App extends React.Component {
 					<Route exact path='/login' render={(props) => 
 						<UserLogin 
 							handleInputChange={this.handleInputChange} 
-							insertUser={this.insertUser} 
-							getAll={this.getAllUsers} 
-							registerUser={this.registerUser} 
+							// insertUser={this.insertUser} 
+							// getAll={this.getAllUsers} 
+							// registerUser={this.registerUser} 
 							loginUser={this.loginUser}
 							logoutUser={this.logoutUser}
 						/>} 

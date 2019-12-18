@@ -22,11 +22,25 @@ class NavBar extends React.Component {
 			<div>
 				<Navbar color="light" light expand="md" className="navbar-static-top">
 					{!this.props.userStatus ? 
-						<NavbarBrand className="nav-link" href="/#">MERN Boilerplate</NavbarBrand>	
+						// <NavbarBrand className="nav-link" href="/">MERN Boilerplate</NavbarBrand>	
+						<NavbarBrand>
+							<NavLink>
+								<Link className="nav-link" to='/'>
+									MERN Boilerplate
+								</Link>
+							</NavLink>
+						</NavbarBrand>
 
 						:
 
-						<NavbarBrand className="nav-link" href='/#'>MERN Boilerplate || Welcome: {this.props.currentUser.username} </NavbarBrand>
+						// <NavbarBrand className="nav-link" href='/'>MERN Boilerplate || Welcome: {this.props.currentUser.username} </NavbarBrand>
+						<NavbarBrand>
+							<NavLink>
+								<Link className='nav-link' to='/'>
+									MERN Boilerplate || Welcome: {this.props.currentUser.username}
+								</Link>
+							</NavLink>
+						</NavbarBrand>
 					}
 					<NavbarToggler onClick={this.toggle} />
 					<Collapse isOpen={this.state.isOpen} navbar>
@@ -38,12 +52,12 @@ class NavBar extends React.Component {
 								<DropdownMenu right>
 									<DropdownItem>
 										<NavLink>
-											<Link className="nav-link" to='/login'>Link One</Link>
+											<Link className="nav-link" to='/login'>Login</Link>
 										</NavLink>
 									</DropdownItem>
 									<DropdownItem>
 										<NavLink>
-											<Link className="nav-link" to='/mission'>Link Two</Link>
+											<Link className="nav-link" to='/mission'>Signup</Link>
 										</NavLink>
 									</DropdownItem>
 									<DropdownItem>
