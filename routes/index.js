@@ -9,6 +9,16 @@ const passport = require('passport');
 // Once this is done, the formatted router can be exported. 
 router.use('/api', routes);
 
+router.route('/usertest').get(function(req,res){
+	console.log("testing to see whether or not user is logged in")
+	if(req.user){
+		res.json(req.user)
+	}
+	else{
+		res.json('no user signed in')
+	}
+})
+
 // Basic CRUD routes
 // CREATE
 router.route('/test').post(function (req, res) {

@@ -22,6 +22,10 @@ export default {
 		console.log("login info: " + info);
 		return axios.post('/api/user/login', info)
 		// return axios.post('/login', info);
+	},
+
+	logoutUser: function(){
+		return axios.get('/api/user/logout');
 	}
 
 	

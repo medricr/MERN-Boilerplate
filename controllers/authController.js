@@ -34,15 +34,23 @@ module.exports =  {
 			})
 		})
 	},
+
 	loginUser: function(req,res,next){
 		passport.authenticate('local', function (err, user, info) {
 			if (err) { return next(err); }
 			if (!user) { return res.redirect('/login'); }
 			req.logIn(user, function (err) {
+				console.log('loggin in user')
+				console.log(user)
 				if (err) { return next(err); }
 				return res.json(user);
 				// return res.redirect('/users/' + user.username);
 			});
 		})(req, res, next);
+	},
+
+	logoutUser: function(req,res){
+		req.logout();
+		res.redirect('/');
 	}
 }	

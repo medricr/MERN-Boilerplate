@@ -60,7 +60,14 @@ class App extends React.Component {
 		}).then((result)=> {
 			console.log(result)
 			console.log("leaving login");
-			this.setState({isLoggedIn: true})
+			this.setState({isLoggedIn: true, currentUser: result.data})
+		})
+	}
+
+	logoutUser = () => {
+		API.logoutUser().then((result) => {
+			console.log("user logged out")
+			this.setState({isLoggedIn: false, currentUser: {}});
 		})
 	}
 
@@ -89,6 +96,7 @@ class App extends React.Component {
 							getAll={this.getAllUsers} 
 							registerUser={this.registerUser} 
 							loginUser={this.loginUser}
+							logoutUser={this.logoutUser}
 						/>} 
 					/>
 					<Route exact path='/profile' render={(props) => <UserProfile handleInputChange={this.handleInputChange}  />} />

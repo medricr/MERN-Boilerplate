@@ -16,19 +16,8 @@ router.route('/register')
 router.route('/login')
 	.post(authController.loginUser);
 
-// router.post('/login',
-// 	passport.authenticate('local'),
-// 	(req, res) => {
-// 		const user = JSON.parse(JSON.stringify(req.user)) // hack
-// 		const cleanUser = Object.assign({}, user)
-// 		if (cleanUser) {
-// 			delete cleanUser.password
-// 		}
-// 		res.json({ user: cleanUser })
-// 	}
-// )
-
-
+router.route('/logout')
+	.get(authController.logoutUser);
 
 
 module.exports = router;

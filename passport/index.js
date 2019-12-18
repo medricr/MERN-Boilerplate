@@ -7,7 +7,7 @@ passport.serializeUser((user, done) => {
 	console.log('=== serialize ... called ===')
 	console.log(user) // the whole raw user object!
 	console.log('---------')
-	done(null, user)
+	done(null, user.id)
 })
 
 passport.deserializeUser((id, done) => {
