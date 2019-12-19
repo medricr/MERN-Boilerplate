@@ -1,17 +1,21 @@
 const mongoose = require("mongoose");
-const schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const bcrypt = require("bcryptjs");
 mongoose.promise = Promise;
 
-const Schema = new schema({
+const UserSchema = new Schema({
 
+	_id: Schema.Types.ObjectId,
 	username: {type: String},
 	password: {type: String}, 
-	bio: {type: String}
+	bio: {type: String},
+
+	notes: [{type: Schema.Types.ObjectId, ref: 'Note'}]
+	
 });
 
-Schema.methods = {
+UserSchema.methods = {
 	checkPassword: function(inputPassword) {
 		return bcrypt.compareSync(inputPassword, this.password)
 	},
@@ -20,16 +24,27 @@ Schema.methods = {
 	}
 }
 
-Schema.pre('save', function (next) {
+UserSchema.pre('save', function (next) {
 	if (!this.password) {
 		console.log('=======NO PASSWORD PROVIDED=======')
 		next()
 	} else {
+		this._id = new mongoose.Types.ObjectId();
 		this.password = this.hashPassword(this.password)
 		next()
 	}
 });
 
-const User = mongoose.model("User", Schema);
+const NoteSchema = new Schema({
 
-module.exports = User;
+	title: {type: String},
+	subtitle: {type: String},
+	body: {type: String},
+
+	author: {type: Schema.Types.ObjectId, ref: 'User'}
+})
+
+const Note = mongoose.model("Note", NoteSchema);
+const User = mongoose.model("User", UserSchema);
+
+module.exports = User, Note;

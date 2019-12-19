@@ -90,6 +90,7 @@ class App extends React.Component {
 			  <NavBar currentUser={this.state.currentUser} userStatus={this.state.isLoggedIn ? true : false} />
 				<Switch>
 					<Route exact path='/' component={Splashpage} />
+					
 					<Route exact path='/login' render={(props) => 
 						<UserLogin 
 							handleInputChange={this.handleInputChange} 
