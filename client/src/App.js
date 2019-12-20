@@ -62,6 +62,7 @@ class App extends React.Component {
 		}).then((result)=> {
 			console.log(result)
 			console.log("leaving login");
+			console.log(result.data);
 			this.setState({isLoggedIn: true, currentUser: result.data})
 		})
 	}
@@ -74,13 +75,13 @@ class App extends React.Component {
 		})
 	}
 
-	getAllUsers = () => {
-		API.getAllUsers()
-			.then((result => {
-				console.log(result.data);
-				this.setState({allUsers: result.data})
-			}))
-	}
+	// getAllUsers = () => {
+	// 	API.getAllUsers()
+	// 		.then((result => {
+	// 			console.log(result.data);
+	// 			this.setState({allUsers: result.data})
+	// 		}))
+	// }
 
 
 	render() {
@@ -108,7 +109,7 @@ class App extends React.Component {
 							registerUser={this.registerUser}
 						/>} 
 					/>
-					<Route exact path='/profile' render={(props) => <UserProfile handleInputChange={this.handleInputChange}  />} />
+					<Route exact path='/profile' render={(props) => <UserProfile handleInputChange={this.handleInputChange}  currentUser={this.state.currentUser} noteList={this.state.currentUser.notes}/>} />
 				</Switch>
 			</Router>
 		)

@@ -1,6 +1,6 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Jumbotron, Card, CardBody, CardText, CardHeader, CardFooter} from 'reactstrap';
+import {Jumbotron, Card, CardBody, CardText, CardHeader} from 'reactstrap';
 
 class Splashpage extends React.Component {
 
