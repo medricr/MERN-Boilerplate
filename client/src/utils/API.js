@@ -26,6 +26,10 @@ export default {
 
 	logoutUser: function(){
 		return axios.get('/api/user/logout');
+	},
+
+	getCurrentUser: function(){
+		return axios.get('/api/user/profile');
 	}
 
 	

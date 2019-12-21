@@ -90,15 +90,11 @@ class App extends React.Component {
 			<Router>
 			  <NavBar currentUser={this.state.currentUser} userStatus={this.state.isLoggedIn ? true : false} />
 				<Switch>
-					<Route exact path='/' component={Splashpage} />
-					
-					<Route exact path='/login' render={(props) => 
+					<Route exact path='/' component={Splashpage} />					
+					<Route exact path='/login' render={() => 
 						<UserLogin 
 							handleInputChange={this.handleInputChange} 
 							userStatus={this.state.isLoggedIn}
-							// insertUser={this.insertUser} 
-							// getAll={this.getAllUsers} 
-							// registerUser={this.registerUser} 
 							loginUser={this.loginUser}
 							logoutUser={this.logoutUser}
 						/>} 
@@ -109,7 +105,7 @@ class App extends React.Component {
 							registerUser={this.registerUser}
 						/>} 
 					/>
-					<Route exact path='/profile' render={(props) => <UserProfile handleInputChange={this.handleInputChange}  currentUser={this.state.currentUser} noteList={this.state.currentUser.notes}/>} />
+					<Route exact path='/profile' render={(props) => <UserProfile handleInputChange={this.handleInputChange}/>} />
 				</Switch>
 			</Router>
 		)

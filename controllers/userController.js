@@ -16,6 +16,27 @@ module.exports = {
 		db.User.find({})
 			.then(dbModel => res.json(dbModel))
 			.catch(err => res.status(422).json(err));
-	}
+	},
+
+	// getCurrentUser - funtion (req, res)
+		// check to see if req.user is defined
+			// if so
+				// store req.user.id in state
+			// else
+				// redirect back to login page
+
+	getCurrentUser: function(req,res){
+		if(req.user){
+			res.json(req.user.id)
+		}
+		else{
+			res.json("no user found")
+		}
+	},
+
+	// saveUserNote - function(req, res)
+		// create new note with req.body.title and req.body.content
+		// find user in database (findById)
+		// save the note as a note schema to the users profile
 
 }

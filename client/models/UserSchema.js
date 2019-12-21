@@ -38,8 +38,7 @@ UserSchema.pre('save', function (next) {
 const NoteSchema = new Schema({
 
 	title: {type: String},
-	subtitle: {type: String},
-	body: {type: String},
+	content: {type: String},
 
 	author: {type: Schema.Types.ObjectId, ref: 'User'}
 })
