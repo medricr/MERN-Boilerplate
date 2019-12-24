@@ -35,15 +35,7 @@ UserSchema.pre('save', function (next) {
 	}
 });
 
-const NoteSchema = new Schema({
 
-	title: {type: String},
-	content: {type: String},
-
-	author: {type: Schema.Types.ObjectId, ref: 'User'}
-})
-
-const Note = mongoose.model("Note", NoteSchema);
 const User = mongoose.model("User", UserSchema);
 
-module.exports = User, Note;
+module.exports = User;

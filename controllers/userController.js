@@ -39,4 +39,67 @@ module.exports = {
 		// find user in database (findById)
 		// save the note as a note schema to the users profile
 
+
+// UNTESTED - DO NOT COMMIT
+	saveUserNote: function(req,res){
+
+		console.log("saveUSerNote entered")
+		console.log(req.body);
+
+		let submittedTitle = req.body.title;
+		let submittedContent = req.body.content;
+
+		db.Note.findOne({title: submittedTitle}, (err, matchedNote) => {
+			if(matchedNote){
+				return res.json({
+					error: `cannot have notes with duplicate titles`
+				})
+			}
+			
+			
+				const newNote = new db.Note({
+					'title': submittedTitle,
+					'content': submittedContent
+				})
+
+				newNote.save((err, savedNote)=> {
+					if(err){
+						return res.json(err)
+					}
+					return res.json(savedNote);
+
+
+				})
+
+
+
+			
+		})
+
+		// const newNote = new db.Note({
+		// 	'title': submittedTitle,
+		// 	'content': submittedContent
+		// })
+
+		// newNote.save((err, savedNote) => {
+		// 	if (err) {
+		// 		return res.json(err)
+		// 	}
+		// 	return res.json(savedNote);
+
+
+		// })
+
+		// newNote.save((err, savedNote) => {
+		// 	if(err){
+		// 		res.json(err)
+		// 	}
+		// 	else{
+		// 		res.json(savedNote)
+		// 	}
+		// })
+
+
+	}
+
 }

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default {
-	
+	// Testing Routes
 	createUser: function(info) {
 		console.log(info);
 
@@ -13,6 +13,7 @@ export default {
 		return axios.get('/api/user/getall', info);
 	},
 
+	// Application Rotues
 	registerUser: function(info){
 		console.log("registration info: " + info); 
 		return axios.post('/api/user/register', info)
@@ -30,6 +31,10 @@ export default {
 
 	getCurrentUser: function(){
 		return axios.get('/api/user/profile');
+	},
+
+	saveUserNote: function(info){
+		return axios.post('/api/user/profile', info);
 	}
 
 	

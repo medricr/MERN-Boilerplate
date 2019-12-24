@@ -20,7 +20,9 @@ router.route('/logout')
 	.get(authController.logoutUser);
 
 router.route('/profile')
-	.get(userController.getCurrentUser);
+	.get(userController.getCurrentUser)
+	// TESTING
+	.post(userController.saveUserNote);
 
 
 module.exports = router;
