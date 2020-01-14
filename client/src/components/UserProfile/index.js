@@ -1,6 +1,6 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Form, FormGroup, Label, Input, Button} from 'reactstrap';
+import { Container, Form, FormGroup, Label, Input, Button, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText} from 'reactstrap';
 import API from '../../utils/API';
 
 class UserProfile extends React.Component {
@@ -8,13 +8,22 @@ class UserProfile extends React.Component {
 	state = {
 		currentId: "",
 		title: "",
-		content: ""
+		content: "",
+		notes: []
 	}
 
+	// Grabs the current user id on load, and uses that to pull any notes associated with that
+	// user from the database
 	componentDidMount() {
 		API.getCurrentUser().then((result)=> {
 			this.setState({currentId: result.data})
-		})
+		}).then(
+			API.getNotes().then((result)=>{this.setState({notes: result.data})})
+		)
+	}
+
+	componentDidUpdate(){
+		API.getNotes().then((result)=> {this.setState({notes: result.data})})
 	}
 
 	// Captures info from form and places it in state
@@ -37,9 +46,9 @@ class UserProfile extends React.Component {
 		})
 	}
 
-	getNotes = () => {
-		API.getNotes().then((result) => {console.log(result)})
-	}
+	// getNotes = () => {
+	// 	API.getNotes().then((result) => {console.log(result)})
+	// }
 	
 
 	render() {
@@ -56,9 +65,23 @@ class UserProfile extends React.Component {
 						<Label>Title of note</Label>
 						<Input type='text' name="content" onChange={this.handleInputChange} />
 					</FormGroup>
-					{/* <Button onClick={this.saveUserNote}>SAVE</Button> */}
-					<Button onClick={this.getNotes}>GET NOTES</Button>
+					<Button onClick={this.saveUserNote}>SAVE</Button>
+					{/* <Button onClick={this.getNotes}>GET NOTES</Button> */}
 				</Form>
+
+				<ListGroup>
+					{this.state.notes.map((item)=> (
+						<ListGroupItem>
+							<ListGroupItemHeading>
+								{item.title}
+							</ListGroupItemHeading>
+							<ListGroupItemText>
+								{item.content}
+							</ListGroupItemText>
+						</ListGroupItem>
+					))}
+				</ListGroup>
+
 			</Container>
 		)
 	}
