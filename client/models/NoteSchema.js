@@ -6,6 +6,7 @@ mongoose.promise = Promise;
 const NoteSchema = new Schema({
 
 	_id: Schema.Types.ObjectId,
+	// _id: new mongoose.Types.ObjectId(),
 	title: { type: String },
 	content: { type: String },
 	author: { type: Schema.Types.ObjectId, ref: 'User' }

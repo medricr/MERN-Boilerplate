@@ -24,5 +24,8 @@ router.route('/profile')
 	// TESTING
 	.post(userController.saveUserNote);
 
+router.route('/getNotes')
+	.get(userController.getNotes)
+
 
 module.exports = router;

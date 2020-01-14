@@ -97,6 +97,7 @@ class App extends React.Component {
 							userStatus={this.state.isLoggedIn}
 							loginUser={this.loginUser}
 							logoutUser={this.logoutUser}
+							registerUser={this.registerUser}
 						/>} 
 					/>
 					<Route exact path='/register' render={(props) =>

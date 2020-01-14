@@ -30,10 +30,15 @@ class UserProfile extends React.Component {
 	saveUserNote = () => {
 		API.saveUserNote({
 			title: this.state.title,
-			content: this.state.content
+			content: this.state.content,
+			author: this.state.currentId
 		}).then((result)=> {
 			console.log(result);
 		})
+	}
+
+	getNotes = () => {
+		API.getNotes().then((result) => {console.log(result)})
 	}
 	
 
@@ -51,7 +56,8 @@ class UserProfile extends React.Component {
 						<Label>Title of note</Label>
 						<Input type='text' name="content" onChange={this.handleInputChange} />
 					</FormGroup>
-					<Button onClick={this.saveUserNote}>SAVE</Button>
+					{/* <Button onClick={this.saveUserNote}>SAVE</Button> */}
+					<Button onClick={this.getNotes}>GET NOTES</Button>
 				</Form>
 			</Container>
 		)

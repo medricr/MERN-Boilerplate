@@ -35,6 +35,10 @@ export default {
 
 	saveUserNote: function(info){
 		return axios.post('/api/user/profile', info);
+	},
+
+	getNotes: function(){
+		return axios.get('/api/user/getNotes')
 	}
 
 	
