@@ -29,22 +29,14 @@ module.exports = {
 		}
 	},
 
-// TESTING - DO NOT COMMIT
+// Saves note to the notes collection with a title, body, and author id. Once completed, 
+// the note is pushed onto an array of note id's in the user document.
+// TESTED - COMMITED 1/14/2020
 	saveUserNote: function(req,res){
-
-		// console.log("saveUSerNote entered")
-		// console.log(req.body);
 
 		let noteTitle = req.body.title;
 		let noteContent = req.body.content;
 		let noteAuthor = req.body.author
-
-		// db.Note.findOne({title: noteTitle}, (err, matchedNote) => {
-		// 	if(matchedNote){
-		// 		return res.json({
-		// 			error: `cannot have notes with duplicate titles`
-		// 		})
-		// 	}	
 
 		const newNote = new db.Note({
 			'title': noteTitle,
@@ -66,20 +58,11 @@ module.exports = {
 
 	},
 
-// GETNOTES - UNTESTED - DO BOT COMMIT
-
-	// getnotes: function(req,res)
-		// query user database and search for documents with matching user ids
-			// if no match, return error
-			// else, pull array of note ids
-				// for each id, pull matching note from notes collection, and push onto an array of notes, with attached note id
-				// return note array
-
+// Grabs the user id from the request, and pull down the array of node objectIds. Query 
+// the notes collection, converting objectIds to the full documents (titles, bodys, etc.), 
+// and return that array.
+// TESTED - COMMITED 1/14/2020
 	getNotes: function(req,res){
-
-		// let userId = req.body.user;
-		// let noteArray = []
-		// console.log("current users id ==> " + req.user.id)
 
 		db.User.findById({_id: req.user.id}, (err, matchedUser)=> {
 			if(err){
