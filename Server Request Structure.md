@@ -2,7 +2,7 @@ For the purposes of clarity, the structure of server and route requests will be 
 
 Starting from the front end and moving to the backend
 
-1) The user hits a button which takes data from a form, and submits an axios request provied by API.js found in the 'utils' directory.
+1) The user hits a button which takes data from a form, and submits an axios request provided by the API.js file, found in the 'utils' directory.
 
 2) That axios request hits a route defined within the 'routes' directory, which is found in the root directory
 

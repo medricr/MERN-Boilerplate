@@ -22,9 +22,14 @@ class UserProfile extends React.Component {
 		)
 	}
 
-	componentDidUpdate(){
-		API.getNotes().then((result)=> {this.setState({notes: result.data})})
-	}
+	// Updates the displayed list of notes when the user enters a new one on the page
+	// componentDidUpdate(){
+	// 	API.getNotes().then((result)=> {
+	// 		if(this.state.notes.length != result.data.length){
+	// 			this.setState({notes: result.data})
+	// 		}
+	// 	})
+	// }
 
 	// Captures info from form and places it in state
 	handleInputChange = (event) => {
@@ -41,20 +46,24 @@ class UserProfile extends React.Component {
 			title: this.state.title,
 			content: this.state.content,
 			author: this.state.currentId
-		}).then((result)=> {
-			console.log(result);
+		}).then(()=> {
+			API.getNotes().then((result)=> {this.setState({notes: result.data})})
 		})
 	}
 
-	// getNotes = () => {
-	// 	API.getNotes().then((result) => {console.log(result)})
-	// }
-	
+	deleteNote = (buttonId) => {
+		API.deleteNote({
+			currentId: this.state.currentId,
+			noteId: buttonId
+		}).then(()=> {
+			API.getNotes().then((result)=> {this.setState({notes: result.data})})
+		})
+	}
 
 	render() {
 		return(
 			<Container>
-				testing baybeeee
+				
 				<Form>
 					<FormGroup>
 						<Label>Title of note</Label>
@@ -66,7 +75,6 @@ class UserProfile extends React.Component {
 						<Input type='text' name="content" onChange={this.handleInputChange} />
 					</FormGroup>
 					<Button onClick={this.saveUserNote}>SAVE</Button>
-					{/* <Button onClick={this.getNotes}>GET NOTES</Button> */}
 				</Form>
 
 				<ListGroup>
@@ -78,6 +86,7 @@ class UserProfile extends React.Component {
 							<ListGroupItemText>
 								{item.content}
 							</ListGroupItemText>
+							<Button onClick={()=> this.deleteNote(item._id)} >DELETE NOTE</Button>
 						</ListGroupItem>
 					))}
 				</ListGroup>

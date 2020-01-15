@@ -4,9 +4,9 @@ const db = require("../client/models");
 
 
 passport.serializeUser((user, done) => {
-	console.log('=== serialize ... called ===')
-	console.log(user) // the whole raw user object!
-	console.log('---------')
+	// console.log('=== serialize ... called ===')
+	// console.log(user) // the whole raw user object!
+	// console.log('---------')
 	done(null, user.id)
 })
 
@@ -15,9 +15,9 @@ passport.deserializeUser((id, done) => {
 	db.User.findOne(
 		{ _id: id },
 		(err, user) => {
-			console.log('======= DESERILAIZE USER CALLED ======')
-			console.log(user)
-			console.log('--------------')
+			// console.log('======= DESERILAIZE USER CALLED ======')
+			// console.log(user)
+			// console.log('--------------')
 			done(null, user)
 		}
 	)

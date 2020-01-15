@@ -79,6 +79,45 @@ module.exports = {
 
 		
 
+	},
+
+// DELETENOTE - TESTED 1/14/2020 - COMMITED
+// ===============================================
+// deleteNote: function(req,res)
+	// set vars for the note and user id's
+	// find the note in the user doc's 'notes' array
+		// remove that note
+		// then
+	// find the note in the 'notes' collection
+		// remove that note from the notes collection
+		// return 
+// ================================================
+	deleteNote: function(req,res){
+
+		// console.log("entered delete")
+
+		let userId = req.body.currentId;
+		let noteId = req.body.noteId;
+
+		// console.log("req.body ==> " + req.body);
+
+		// console.log("user id ==> " + userId);
+		// console.log("note id ==> " + noteId);
+
+
+		db.Note.findOneAndDelete({_id: noteId}).exec((err, deleted)=> {
+			console.log("entered note delete")
+			if(err){
+				return res.json(err)
+			}
+			db.User.findOneAndUpdate({_id: userId}, {$pull: {notes: noteId}}).exec((err, gone)=> {
+				console.log("entered user update")
+				if(err){
+					return res.json(err)
+				}
+				return res.json(gone);
+			})
+		})
 	}
 
 }

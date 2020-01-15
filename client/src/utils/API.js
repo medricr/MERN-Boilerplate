@@ -38,7 +38,11 @@ export default {
 	},
 
 	getNotes: function(){
-		return axios.get('/api/user/getNotes')
+		return axios.get('/api/user/notes')
+	},
+
+	deleteNote: function(info){
+		return axios.put('/api/user/notes', info)
 	}
 
 	
