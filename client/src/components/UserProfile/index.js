@@ -1,6 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Form, FormGroup, Label, Input, Button, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText} from 'reactstrap';
+import { 
+	Container, 
+	Form, 
+	FormGroup, 
+	Label, 
+	Input, 
+	Button, 
+	ListGroup, 
+	ListGroupItem, 
+	ListGroupItemHeading, 
+	ListGroupItemText,
+	Modal,
+	ModalBody,
+	ModalHeader,
+	ModalFooter
+	} from 'reactstrap';
 import API from '../../utils/API';
 
 class UserProfile extends React.Component {
@@ -9,9 +24,27 @@ class UserProfile extends React.Component {
 		currentId: "",
 		title: "",
 		content: "",
-		notes: []
+		notes: [],
+		modalOpen: false,
+		activeItem: {}
 	}
 
+// COMPONENT UTITLITIES
+// ==================================
+	handleInputChange = (event) => {
+		let name = event.target.name;
+		const value = event.target.value;
+
+		this.setState({
+			[name]: value
+		});
+	}
+	toggle = (item) => {
+		this.setState(prevState => ({
+			modalOpen: !prevState.modalOpen,
+			activeItem: item
+		}))
+	}
 	// Grabs the current user id on load, and uses that to pull any notes associated with that
 	// user from the database
 	componentDidMount() {
@@ -21,26 +54,8 @@ class UserProfile extends React.Component {
 			API.getNotes().then((result)=>{this.setState({notes: result.data})})
 		)
 	}
-
-	// Updates the displayed list of notes when the user enters a new one on the page
-	// componentDidUpdate(){
-	// 	API.getNotes().then((result)=> {
-	// 		if(this.state.notes.length != result.data.length){
-	// 			this.setState({notes: result.data})
-	// 		}
-	// 	})
-	// }
-
-	// Captures info from form and places it in state
-	handleInputChange = (event) => {
-		let name = event.target.name;
-		const value = event.target.value;
-
-		this.setState({
-			[name]: value
-		});
-	}
-
+// COMPONENT METHODS
+// ===================================
 	saveUserNote = () => {
 		API.saveUserNote({
 			title: this.state.title,
@@ -60,6 +75,37 @@ class UserProfile extends React.Component {
 		})
 	}
 
+	updateNote = (item) => {
+
+		let titleUpdate = "";
+		let contentUpdate = "";
+
+		// The following if/else blocks ensure that even if the user only updates 
+		// one field of the note, the other will not be cleared
+		if(this.state.title == ""){
+			titleUpdate = item.title
+		} else {
+			titleUpdate = this.state.title;
+		}
+
+		if(this.state.content == ""){
+			contentUpdate = item.content
+		} else {
+			contentUpdate = this.state.content
+		}
+		
+		API.updateNote({
+			noteId: item._id,
+			noteTitle: titleUpdate,
+			noteContent: contentUpdate
+		}).then(()=> {
+			API.getNotes().then((result)=> {this.setState({notes: result.data})})
+			// State is then cleared to ensure that if the user goes to update another note, the information
+			// from the first update is not retained
+			this.setState({title: "", conent: "", modalOpen: false})
+			
+		})
+	}
 	render() {
 		return(
 			<Container>
@@ -69,7 +115,6 @@ class UserProfile extends React.Component {
 						<Label>Title of note</Label>
 						<Input type='text' name="title" onChange={this.handleInputChange} />
 					</FormGroup>
-
 					<FormGroup>
 						<Label>Title of note</Label>
 						<Input type='text' name="content" onChange={this.handleInputChange} />
@@ -87,13 +132,35 @@ class UserProfile extends React.Component {
 								{item.content}
 							</ListGroupItemText>
 							<Button onClick={()=> this.deleteNote(item._id)} >DELETE NOTE</Button>
+							<Button onClick={()=> this.toggle(item)} >EDIT NOTE</Button>
+
+						
 						</ListGroupItem>
 					))}
 				</ListGroup>
+
+				<Modal isOpen={this.state.modalOpen} toggle={this.toggle}>
+					<ModalHeader >
+						<FormGroup>
+							<Label>Note Title</Label>
+							<Input type='text' name='title' onChange={this.handleInputChange} placeholder={this.state.activeItem.title} />
+
+						</FormGroup>
+					</ModalHeader>
+					<ModalBody>
+						<FormGroup>
+							<Label>Note Body</Label>
+							<Input type='text' name='content' onChange={this.handleInputChange} placeholder={this.state.activeItem.content} />
+						</FormGroup>
+					</ModalBody>
+					<ModalFooter>
+						UPDATE BUTTON HERE
+									<Button onClick={() => { this.updateNote(this.state.activeItem) }}>UPDATE NOTE</Button>
+					</ModalFooter>
+				</Modal> 
 
 			</Container>
 		)
 	}
 }
-
 export default UserProfile;

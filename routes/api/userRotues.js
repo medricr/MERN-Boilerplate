@@ -26,7 +26,8 @@ router.route('/profile')
 
 router.route('/notes')
 	.get(userController.getNotes)
-	.put(userController.deleteNote);
+	.post(userController.deleteNote)
+	.put(userController.updateNote);
 
 
 module.exports = router;

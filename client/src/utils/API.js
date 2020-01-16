@@ -42,6 +42,10 @@ export default {
 	},
 
 	deleteNote: function(info){
+		return axios.post('/api/user/notes', info)
+	},
+
+	updateNote: function(info){
 		return axios.put('/api/user/notes', info)
 	}
 

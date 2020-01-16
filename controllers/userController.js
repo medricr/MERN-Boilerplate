@@ -36,7 +36,7 @@ module.exports = {
 
 		let noteTitle = req.body.title;
 		let noteContent = req.body.content;
-		let noteAuthor = req.body.author
+		let noteAuthor = req.body.author;
 
 		const newNote = new db.Note({
 			'title': noteTitle,
@@ -46,16 +46,15 @@ module.exports = {
 
 		newNote.save((err, savedNote)=> {
 			if(err){
-				return res.json(err)
+				return res.json(err);
 			}
 			db.User.findOneAndUpdate({ _id: noteAuthor }, { $push: { notes: newNote._id } }, (err, updatedUser) => {
 				if (err) {
-					return res.json(err)
+					return res.json(err);
 				}
-				return res.json(updatedUser)
-			})
-		})	
-
+				return res.json(updatedUser);
+			});
+		});	
 	},
 
 // Grabs the user id from the request, and pull down the array of node objectIds. Query 
@@ -74,11 +73,8 @@ module.exports = {
 					return res.json(err)
 				}
 				return res.json(notes);
-			})
-		})
-
-		
-
+			});
+		});
 	},
 
 // DELETENOTE - TESTED 1/14/2020 - COMMITED
@@ -117,6 +113,42 @@ module.exports = {
 				}
 				return res.json(gone);
 			})
+		})
+	},
+
+// UPDATENOTE - UNTESTED - DO NOT COMMIT
+// ===========================================
+// updateNote(req{body.title = noteTitle, body.content = noteContent},res)
+
+	// id = id submitted in request
+	// title = title submitted in request
+	// content = content submitted in request
+
+	// database update query (id = note id)
+		// replace note title and content with updated title and content
+		// return error if error is present
+		// else return new note
+// ============================================
+
+	updateNote: function(req,res){
+
+		let noteId = req.body.noteId;
+		let noteTitle = req.body.noteTitle;
+		let noteContent = req.body.noteContent;
+
+		db.Note.findOneAndUpdate(
+			{_id: noteId},
+			{ $set:
+				{
+					title: noteTitle,
+					content: noteContent
+				}
+			}
+		).exec((err, updatedNote)=> {
+			if(err){
+				return res.json(err)
+			}
+			return res.json(updatedNote);
 		})
 	}
 

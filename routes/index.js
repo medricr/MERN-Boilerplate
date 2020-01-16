@@ -10,7 +10,7 @@ const passport = require('passport');
 router.use('/api', routes);
 
 router.route('/usertest').get(function(req,res){
-	console.log("testing to see whether or not user is logged in")
+	console.log("testing to see whether or not user is logged in");
 	if(req.user){
 		res.json(req.user)
 	}
