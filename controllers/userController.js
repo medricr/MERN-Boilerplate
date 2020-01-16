@@ -1,8 +1,5 @@
 // Bring in the list of models from the models folder
 const db = require('../client/models');
-
-// const mongoose = require('mongoose')
-
 // Below are the defined functions for creating a user object and storing it in the database. These are the funcitons that will be // used by the different routes outside this directory, defined here so they can be referenced by the react app
 module.exports = {
 	
@@ -13,13 +10,11 @@ module.exports = {
 			.then(dbModel => res.json(dbModel))
 			.catch(err => res.status(422).json(err));
 	},
-
 	getAllUsers: function(req, res) {
 		db.User.find({})
 			.then(dbModel => res.json(dbModel))
 			.catch(err => res.status(422).json(err));
 	},
-
 	getCurrentUser: function(req,res){
 		if(req.user){
 			res.json(req.user.id)
@@ -28,7 +23,6 @@ module.exports = {
 			res.json("no user found")
 		}
 	},
-
 // Saves note to the notes collection with a title, body, and author id. Once completed, 
 // the note is pushed onto an array of note id's in the user document.
 // TESTED - COMMITED 1/14/2020
@@ -56,18 +50,15 @@ module.exports = {
 			});
 		});	
 	},
-
 // Grabs the user id from the request, and pull down the array of node objectIds. Query 
 // the notes collection, converting objectIds to the full documents (titles, bodys, etc.), 
 // and return that array.
 // TESTED - COMMITED 1/14/2020
 	getNotes: function(req,res){
-
 		db.User.findById({_id: req.user.id}, (err, matchedUser)=> {
 			if(err){
 				return res.json(err)
 			}
-			
 			db.Note.find({_id: {$in: matchedUser.notes}}, (err, notes)=> {
 				if(err){
 					return res.json(err)
@@ -76,7 +67,6 @@ module.exports = {
 			});
 		});
 	},
-
 // DELETENOTE - TESTED 1/14/2020 - COMMITED
 // ===============================================
 // deleteNote: function(req,res)
@@ -115,8 +105,7 @@ module.exports = {
 			})
 		})
 	},
-
-// UPDATENOTE - UNTESTED - DO NOT COMMIT
+// UPDATENOTE - TESTED - COMMITED 1/16/2020
 // ===========================================
 // updateNote(req{body.title = noteTitle, body.content = noteContent},res)
 
@@ -129,13 +118,10 @@ module.exports = {
 		// return error if error is present
 		// else return new note
 // ============================================
-
 	updateNote: function(req,res){
-
 		let noteId = req.body.noteId;
 		let noteTitle = req.body.noteTitle;
 		let noteContent = req.body.noteContent;
-
 		db.Note.findOneAndUpdate(
 			{_id: noteId},
 			{ $set:
@@ -151,6 +137,4 @@ module.exports = {
 			return res.json(updatedNote);
 		})
 	}
-
 }
-

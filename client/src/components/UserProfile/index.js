@@ -28,7 +28,6 @@ class UserProfile extends React.Component {
 		modalOpen: false,
 		activeItem: {}
 	}
-
 // COMPONENT UTITLITIES
 // ==================================
 	handleInputChange = (event) => {
@@ -54,8 +53,9 @@ class UserProfile extends React.Component {
 			API.getNotes().then((result)=>{this.setState({notes: result.data})})
 		)
 	}
-// COMPONENT METHODS
 // ===================================
+// COMPONENT METHODS
+// +++++++++++++++++++++++++++++++++++
 	saveUserNote = () => {
 		API.saveUserNote({
 			title: this.state.title,
@@ -65,7 +65,6 @@ class UserProfile extends React.Component {
 			API.getNotes().then((result)=> {this.setState({notes: result.data})})
 		})
 	}
-
 	deleteNote = (buttonId) => {
 		API.deleteNote({
 			currentId: this.state.currentId,
@@ -74,7 +73,6 @@ class UserProfile extends React.Component {
 			API.getNotes().then((result)=> {this.setState({notes: result.data})})
 		})
 	}
-
 	updateNote = (item) => {
 
 		let titleUpdate = "";
@@ -102,14 +100,14 @@ class UserProfile extends React.Component {
 			API.getNotes().then((result)=> {this.setState({notes: result.data})})
 			// State is then cleared to ensure that if the user goes to update another note, the information
 			// from the first update is not retained
-			this.setState({title: "", conent: "", modalOpen: false})
+			this.setState({title: "", content: "", modalOpen: false})
 			
 		})
 	}
+// +++++++++++++++++++++++++++++++++++
 	render() {
 		return(
-			<Container>
-				
+			<Container>		
 				<Form>
 					<FormGroup>
 						<Label>Title of note</Label>
@@ -121,7 +119,6 @@ class UserProfile extends React.Component {
 					</FormGroup>
 					<Button onClick={this.saveUserNote}>SAVE</Button>
 				</Form>
-
 				<ListGroup>
 					{this.state.notes.map((item)=> (
 						<ListGroupItem>
@@ -133,12 +130,9 @@ class UserProfile extends React.Component {
 							</ListGroupItemText>
 							<Button onClick={()=> this.deleteNote(item._id)} >DELETE NOTE</Button>
 							<Button onClick={()=> this.toggle(item)} >EDIT NOTE</Button>
-
-						
 						</ListGroupItem>
 					))}
 				</ListGroup>
-
 				<Modal isOpen={this.state.modalOpen} toggle={this.toggle}>
 					<ModalHeader >
 						<FormGroup>
@@ -158,9 +152,9 @@ class UserProfile extends React.Component {
 									<Button onClick={() => { this.updateNote(this.state.activeItem) }}>UPDATE NOTE</Button>
 					</ModalFooter>
 				</Modal> 
-
 			</Container>
 		)
 	}
 }
+
 export default UserProfile;

@@ -11,7 +11,7 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((id, done) => {
-	console.log('DEserialize ... called')
+	// console.log('DEserialize ... called')
 	db.User.findOne(
 		{ _id: id },
 		(err, user) => {
