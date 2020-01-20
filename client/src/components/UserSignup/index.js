@@ -1,12 +1,8 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Form, FormGroup, FormText, Label, Input, Button, Container } from 'reactstrap'
+import { Form, FormGroup, Label, Input, Button, Container } from 'reactstrap'
 
 class UserSignup extends React.Component {
-
-	constructor(props){
-		super(props);
-	}
 
 	render(){
 		return(

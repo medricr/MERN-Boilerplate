@@ -1,7 +1,6 @@
 import React from 'react';
-import { Navbar, Nav, NavLink, NavbarBrand, Collapse, NavbarToggler, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Navbar, Nav, NavbarBrand, Collapse, NavbarToggler, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
 
 class NavBar extends React.Component {
 
@@ -10,9 +9,9 @@ class NavBar extends React.Component {
 	};
 
 	toggle = () => {
-		this.setState({ isOpen: !this.state.isOpen });
+		this.setState((prevState)=> ({isOpen: !prevState}));
 	}
-
+	
 	render() {
 		return (
 			<div>

@@ -4,10 +4,6 @@ import {Jumbotron, Card, CardBody, CardText, CardHeader} from 'reactstrap';
 
 class Splashpage extends React.Component {
 
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		return(
 			<Jumbotron>

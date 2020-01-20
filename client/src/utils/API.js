@@ -2,16 +2,16 @@ import axios from 'axios';
 
 export default {
 	// Testing Routes
-	createUser: function(info) {
-		console.log(info);
+	// createUser: function(info) {
+	// 	console.log(info);
 
-		return axios.post("/api/user/insert", info);
-	},
+	// 	return axios.post("/api/user/insert", info);
+	// },
 
-	getAllUsers: function(info) {
+	// getAllUsers: function(info) {
 
-		return axios.get('/api/user/getall', info);
-	},
+	// 	return axios.get('/api/user/getall', info);
+	// },
 
 	// Application Rotues
 	registerUser: function(info){

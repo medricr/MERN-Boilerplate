@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { 
 	Container, 
@@ -17,6 +17,8 @@ import {
 	ModalFooter
 	} from 'reactstrap';
 import API from '../../utils/API';
+
+import './styles.css'
 
 class UserProfile extends React.Component {
 
@@ -80,13 +82,13 @@ class UserProfile extends React.Component {
 
 		// The following if/else blocks ensure that even if the user only updates 
 		// one field of the note, the other will not be cleared
-		if(this.state.title == ""){
+		if(this.state.title === ""){
 			titleUpdate = item.title
 		} else {
 			titleUpdate = this.state.title;
 		}
 
-		if(this.state.content == ""){
+		if(this.state.content === ""){
 			contentUpdate = item.content
 		} else {
 			contentUpdate = this.state.content
@@ -110,18 +112,18 @@ class UserProfile extends React.Component {
 			<Container>		
 				<Form>
 					<FormGroup>
-						<Label>Title of note</Label>
+						<Label>Title</Label>
 						<Input type='text' name="title" onChange={this.handleInputChange} />
 					</FormGroup>
 					<FormGroup>
-						<Label>Title of note</Label>
+						<Label>Body</Label>
 						<Input type='text' name="content" onChange={this.handleInputChange} />
 					</FormGroup>
 					<Button onClick={this.saveUserNote}>SAVE</Button>
 				</Form>
 				<ListGroup>
 					{this.state.notes.map((item)=> (
-						<ListGroupItem>
+						<ListGroupItem key={item._id}>
 							<ListGroupItemHeading>
 								{item.title}
 							</ListGroupItemHeading>
@@ -148,8 +150,7 @@ class UserProfile extends React.Component {
 						</FormGroup>
 					</ModalBody>
 					<ModalFooter>
-						UPDATE BUTTON HERE
-									<Button onClick={() => { this.updateNote(this.state.activeItem) }}>UPDATE NOTE</Button>
+						<Button onClick={() => { this.updateNote(this.state.activeItem) }}>UPDATE NOTE</Button>
 					</ModalFooter>
 				</Modal> 
 			</Container>

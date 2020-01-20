@@ -4,11 +4,11 @@ const passport = require('passport');
 const userController = require('./../../controllers/userController');
 const authController = require('../../controllers/authController');
 
-router.route('/insert')
-	.post(userController.createUser);
+// router.route('/insert')
+// 	.post(userController.createUser);
 
-router.route('/getall')
-	.get(userController.getAllUsers);
+// router.route('/getall')
+// 	.get(userController.getAllUsers);
 
 router.route('/register')
 	.post(authController.registerUser);

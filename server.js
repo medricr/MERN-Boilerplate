@@ -20,17 +20,18 @@ if (process.env.NODE_ENV) {
 
 app.use(routes);
 
-// app.get("*", function (req, res) {
-// 	var directory;
-// 	if (process.env.NODE_ENV) {
-// 		directory = "build";
-// 	} else {
-// 		directory = "public";
-// 	}
+// USED FOR SERVING STATIC ASSETS IN DEPLOYMENT
+app.get("*", function (req, res) {
+	var directory;
+	if (process.env.NODE_ENV) {
+		directory = "build";
+	} else {
+		directory = "public";
+	}
 
-// 	res.sendFile(path.join(__dirname, `./client/${directory}/index.html`));
+	res.sendFile(path.join(__dirname, `./client/${directory}/index.html`));
 
-// });
+});
 
 // Establish connection to database
 // Anything following localhost/ can be changed to fit whatever naming convention fits the project best 

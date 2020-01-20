@@ -22,6 +22,10 @@ class App extends React.Component {
 		currentUser: {},
 		allUsers: []
 	}
+
+	componentDidMount(){
+		console.log('app mounted')
+	}
 	// Captures info from form and places it in state
 	handleInputChange = (event) => {
 		let name = event.target.name;
@@ -31,17 +35,16 @@ class App extends React.Component {
 			[name]: value
 		});
 	}
-
 	// used to test the insertion of records from the react form into the database
-	insertUser = () => {
-		API.createUser({
-			username: this.state.username,
-			password: this.state.password
-		}).then((result)=> {
-			console.log(result.data)
+	// insertUser = () => {
+	// 	API.createUser({
+	// 		username: this.state.username,
+	// 		password: this.state.password
+	// 	}).then((result)=> {
+	// 		console.log(result.data)
 		
-		})
-	}
+	// 	})
+	// }
 
 	// used to run the user object through passport, hashing the password before storing it in the database
 	registerUser = () => {
@@ -53,7 +56,6 @@ class App extends React.Component {
 			this.setState({ isSignedUp: true, currentUser: result.data });
 		})
 	}
-
 	// Handles logging in of user, sets the currentUser state object to the logged in user
 	loginUser = () => {
 		API.loginUser({
@@ -66,7 +68,6 @@ class App extends React.Component {
 			this.setState({isLoggedIn: true, currentUser: result.data})
 		})
 	}
-
 	// Handles the loggin out of the user, clears state
 	logoutUser = () => {
 		API.logoutUser().then((result) => {
@@ -75,18 +76,8 @@ class App extends React.Component {
 		})
 	}
 
-	// getAllUsers = () => {
-	// 	API.getAllUsers()
-	// 		.then((result => {
-	// 			console.log(result.data);
-	// 			this.setState({allUsers: result.data})
-	// 		}))
-	// }
-
-
 	render() {
-		return (
-			
+		return (	
 			<Router>
 			  <NavBar currentUser={this.state.currentUser} userStatus={this.state.isLoggedIn ? true : false} />
 				<Switch>

@@ -1,8 +1,5 @@
-// const path = require("path");
 const router = require("express").Router();
-// let Schema = require('../client/models/UserSchema.js');
 const routes = require('./api');
-// const passport = require('passport');
 
 // Import any routes defined in the api folder, and places them behind the '/api/ prefix. 
 // All final route orginization takes place here, as different sets of routes are imported and placed behind relavent prefixes.
