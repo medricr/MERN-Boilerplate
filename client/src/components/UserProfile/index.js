@@ -18,7 +18,7 @@ import {
 	} from 'reactstrap';
 import API from '../../utils/API';
 
-import './styles.css'
+// import './Stylesheet.css';
 
 class UserProfile extends React.Component {
 
@@ -119,7 +119,7 @@ class UserProfile extends React.Component {
 						<Label>Body</Label>
 						<Input type='text' name="content" onChange={this.handleInputChange} />
 					</FormGroup>
-					<Button onClick={this.saveUserNote}>SAVE</Button>
+					<Button onClick={this.saveUserNote} color="primary">SAVE</Button>
 				</Form>
 				<ListGroup>
 					{this.state.notes.map((item)=> (
@@ -130,8 +130,8 @@ class UserProfile extends React.Component {
 							<ListGroupItemText>
 								{item.content}
 							</ListGroupItemText>
-							<Button onClick={()=> this.deleteNote(item._id)} >DELETE NOTE</Button>
-							<Button onClick={()=> this.toggle(item)} >EDIT NOTE</Button>
+							<Button onClick={()=> this.deleteNote(item._id)} color="danger" className="button">DELETE NOTE</Button>{' '}
+							<Button onClick={()=> this.toggle(item)} color="warning">EDIT NOTE</Button>
 						</ListGroupItem>
 					))}
 				</ListGroup>
@@ -150,7 +150,7 @@ class UserProfile extends React.Component {
 						</FormGroup>
 					</ModalBody>
 					<ModalFooter>
-						<Button onClick={() => { this.updateNote(this.state.activeItem) }}>UPDATE NOTE</Button>
+						<Button onClick={() => { this.updateNote(this.state.activeItem) }} color="warning">UPDATE NOTE</Button>
 					</ModalFooter>
 				</Modal> 
 			</Container>

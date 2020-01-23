@@ -10,7 +10,6 @@ import NavBar from './components/NavBar';
 import UserProfile from './components/UserProfile';
 import Splashpage from './components/Splashpage';
 
-
 class App extends React.Component {
 
 	state = {
@@ -22,9 +21,8 @@ class App extends React.Component {
 		currentUser: {},
 		allUsers: []
 	}
-
 	componentDidMount(){
-		console.log('app mounted')
+		console.log('app mounted');
 	}
 	// Captures info from form and places it in state
 	handleInputChange = (event) => {
@@ -35,17 +33,6 @@ class App extends React.Component {
 			[name]: value
 		});
 	}
-	// used to test the insertion of records from the react form into the database
-	// insertUser = () => {
-	// 	API.createUser({
-	// 		username: this.state.username,
-	// 		password: this.state.password
-	// 	}).then((result)=> {
-	// 		console.log(result.data)
-		
-	// 	})
-	// }
-
 	// used to run the user object through passport, hashing the password before storing it in the database
 	registerUser = () => {
 		API.registerUser({
