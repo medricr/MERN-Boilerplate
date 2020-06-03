@@ -28,6 +28,7 @@ module.exports =  {
 				return res.json(savedUser);
 			})
 		})
+
 	},
 
 	loginUser: function(req,res,next){
@@ -44,6 +45,7 @@ module.exports =  {
 	},
 
 	logoutUser: function(req,res){
+		console.log('logout route hit')
 		req.logout();
 		res.redirect('/');
 	}

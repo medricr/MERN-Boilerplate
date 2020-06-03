@@ -121,6 +121,7 @@ class UserProfile extends React.Component {
 					</FormGroup>
 					<Button onClick={this.saveUserNote} color="primary">SAVE</Button>
 				</Form>
+				{' '}
 				<ListGroup>
 					{this.state.notes.map((item)=> (
 						<ListGroupItem key={item._id}>

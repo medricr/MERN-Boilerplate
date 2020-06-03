@@ -11,6 +11,8 @@ class NavBar extends React.Component {
 	toggle = () => {
 		this.setState((prevState)=> ({isOpen: !prevState}));
 	}
+
+
 	
 	render() {
 		return (
@@ -35,15 +37,29 @@ class NavBar extends React.Component {
 									More
 							</DropdownToggle>
 								<DropdownMenu right>
-									<DropdownItem>
-										<Link className="nav-link" to='/login'>Login</Link>
-									</DropdownItem>
-									<DropdownItem>
-										<Link className="nav-link" to='/register'>Signup</Link>
-									</DropdownItem>
-									<DropdownItem>
-										<Link className='nav-link' to='/profile'>Profile</Link>
-									</DropdownItem>
+									{!this.props.userStatus ?
+										<DropdownItem>
+											<Link className="nav-link" to='/login'>Login</Link>
+										</DropdownItem>
+
+										:
+
+										<DropdownItem>
+											<Link className='nav-link' to='/' onClick={this.props.logoutUser}>Logout</Link>
+										</DropdownItem>
+									}
+									{!this.props.userStatus ?
+										<DropdownItem>
+											<Link className="nav-link" to='/register'>Signup</Link>
+										</DropdownItem>
+
+										:
+
+										<DropdownItem>
+											<Link className='nav-link' to='/profile'>Profile</Link>
+										</DropdownItem>
+									}
+									
 								</DropdownMenu>
 							</UncontrolledDropdown>
 						</Nav>

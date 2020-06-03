@@ -39,8 +39,14 @@ class App extends React.Component {
 			username: this.state.username,
 			password: this.state.password
 		}).then((result)=> {
-			console.log(result)
+			console.log("registration result: ", result)
 			this.setState({ isSignedUp: true, currentUser: result.data });
+			API.loginUser({
+				username: this.state.username,
+				password: this.state.password
+			}).then((result)=> {
+				this.setState({isLoggedIn: true, currentUser: result.data})
+			})
 		})
 	}
 	// Handles logging in of user, sets the currentUser state object to the logged in user
@@ -66,7 +72,7 @@ class App extends React.Component {
 	render() {
 		return (	
 			<Router>
-			  <NavBar currentUser={this.state.currentUser} userStatus={this.state.isLoggedIn ? true : false} />
+			  <NavBar currentUser={this.state.currentUser} userStatus={this.state.isLoggedIn ? true : false} logoutUser={this.logoutUser}/>
 				<Switch>
 					<Route exact path='/' component={Splashpage} />					
 					<Route exact path='/login' render={() => 
@@ -74,12 +80,12 @@ class App extends React.Component {
 							handleInputChange={this.handleInputChange} 
 							userStatus={this.state.isLoggedIn}
 							loginUser={this.loginUser}
-							logoutUser={this.logoutUser}
 							registerUser={this.registerUser}
 						/>} 
 					/>
 					<Route exact path='/register' render={(props) =>
 						<UserSignup 
+							userStatus={this.state.isLoggedIn}
 							handleInputChange={this.handleInputChange}
 							registerUser={this.registerUser}
 						/>} 
