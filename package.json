@@ -4,15 +4,14 @@
   "description": "A basic set of boilerplate code for creating applications on a MERN stack.",
   "main": "server.js",
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "set NODE_ENV=production && nodemon server.js",
+    "begin": "npm run build && node server.js",
+    "start": "node server.js",
+    "start:original": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "win:prod": "set NODE_ENV=production && nodemon server.js",
     "client": "cd client && npm run start",
-    "seed": "node scripts/seedDB.js",
     "install": "cd client && npm install",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
@@ -34,6 +33,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
+    "http-proxy-middleware": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.13",
     "nodemon": "^1.19.4",
