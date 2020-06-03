@@ -35,7 +35,7 @@ app.get("*", function (req, res) {
 
 // Establish connection to database
 // Anything following localhost/ can be changed to fit whatever naming convention fits the project best 
-mongoose.connect(process.send.MONGODB_URI || 'mongodb://localhost/TEST', { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/TEST', { useNewUrlParser: true });
 const connection = mongoose.connection;
 
 // Check connection to db
