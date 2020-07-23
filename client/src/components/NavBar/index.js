@@ -1,15 +1,26 @@
 import React from 'react';
 import { Navbar, Nav, NavbarBrand, Collapse, NavbarToggler, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+//! concurrent update test - DO NOT LEAVE ME IN
+import { InputGroup, Input } from 'reactstrap';
 class NavBar extends React.Component {
 
 	state = {
-		isOpen: false
+		isOpen: false,
+		test: ""
 	};
 
 	toggle = () => {
 		this.setState((prevState)=> ({isOpen: !prevState}));
+	}
+
+	handleInputChange = (event) => {
+		let name = event.target.name;
+		const value = event.target.value;
+
+		this.setState({
+			[name]: value
+		});
 	}
 
 
@@ -20,7 +31,7 @@ class NavBar extends React.Component {
 				<Navbar color="light" light expand="md" className="navbar-static-top">
 					{!this.props.userStatus ?	
 						<NavbarBrand tag={Link} to='/'>
-							MERN Boilerplate
+							MERN Boilerplate ------ {this.state.test}
 						</NavbarBrand>
 
 						:
@@ -65,6 +76,10 @@ class NavBar extends React.Component {
 						</Nav>
 					</Collapse>
 				</Navbar>
+				//! concurrent update test - DO NOT LEAVE ME IN
+				<InputGroup>
+					<Input  name='test' placeholder='type in me' onChange={this.handleInputChange}/>
+				</InputGroup>
 			</div>
 		)
 	}
