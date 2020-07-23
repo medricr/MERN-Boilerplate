@@ -25,7 +25,6 @@ class Splashpage extends React.Component {
 						</CardText>
 					</CardBody>
 				</Card>
-				
 			</Jumbotron>
 		)
 	}

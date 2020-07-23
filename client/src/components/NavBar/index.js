@@ -1,8 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, NavbarBrand, Collapse, NavbarToggler, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
-//! concurrent update test - DO NOT LEAVE ME IN
-import { InputGroup, Input } from 'reactstrap';
+
 class NavBar extends React.Component {
 
 	state = {
@@ -14,17 +13,6 @@ class NavBar extends React.Component {
 		this.setState((prevState)=> ({isOpen: !prevState}));
 	}
 
-	handleInputChange = (event) => {
-		let name = event.target.name;
-		const value = event.target.value;
-
-		this.setState({
-			[name]: value
-		});
-	}
-
-
-	
 	render() {
 		return (
 			<div>
@@ -75,11 +63,7 @@ class NavBar extends React.Component {
 							</UncontrolledDropdown>
 						</Nav>
 					</Collapse>
-				</Navbar>
-				//! concurrent update test - DO NOT LEAVE ME IN
-				<InputGroup>
-					<Input  name='test' placeholder='type in me' onChange={this.handleInputChange}/>
-				</InputGroup>
+				</Navbar>	
 			</div>
 		)
 	}
