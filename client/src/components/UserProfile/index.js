@@ -121,6 +121,7 @@ class UserProfile extends React.Component {
 					</FormGroup>
 					<Button onClick={this.saveUserNote} color="primary">SAVE</Button>
 				</Form>
+				< br/>
 				{' '}
 				<ListGroup>
 					{this.state.notes.map((item)=> (
@@ -134,6 +135,7 @@ class UserProfile extends React.Component {
 							<Button onClick={()=> this.deleteNote(item._id)} color="danger" className="button">DELETE NOTE</Button>{' '}
 							<Button onClick={()=> this.toggle(item)} color="warning">EDIT NOTE</Button>
 						</ListGroupItem>
+						
 					))}
 				</ListGroup>
 				<Modal isOpen={this.state.modalOpen} toggle={this.toggle}>
