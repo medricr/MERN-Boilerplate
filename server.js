@@ -40,7 +40,7 @@ const connection = mongoose.connection;
 
 // Check connection to db
 connection.once('open', function () {
-	res.json("MongoDB database connection established successfully");
+	console.log("MongoDB database connection established successfully");
 })
 connection.on('error', (err)=> {console.log('connection error: ', err)}); 
 
