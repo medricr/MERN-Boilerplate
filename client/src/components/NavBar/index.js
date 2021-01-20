@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 class NavBar extends React.Component {
 
 	state = {
-		isOpen: false,
-		test: ""
+		isOpen: false
 	};
 
 	toggle = () => {
