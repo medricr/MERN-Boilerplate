@@ -19,9 +19,7 @@ class Splashpage extends React.Component {
 
 							To modify the project, simply change, add, or remove components, controllers, and routes as needed.
 
-							Good luck, and happy coding!!!
-
-							- Mordrick R'lyeh
+							Happy Coding.
 						</CardText>
 					</CardBody>
 				</Card>
